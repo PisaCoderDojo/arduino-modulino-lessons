@@ -51,37 +51,43 @@ class ModulinoButtons():
     """
     self._on_button_c_press = value
 
+  def printButtons(self):
+    print("#########")
+    print("#       #")
+    print("# ", end="")
+    print(self, end="")
+    print(" #")
+    print("#       #")
+    print("#########")
 
   def update(self) -> bool:
-    print("#########")
-    print("#")
-    print("#", end="")
-    print(self)
-    print("#")
-    print("#########")
-
-
+    self.printButtons()
     pressed = input()
-
     if str.capitalize(pressed) == "A":
-      self._on_button_a_press()
       self._current_buttons_status[0] = True
+      self.printButtons()
+      self._on_button_a_press()
+      self._current_buttons_status[0] = False
+    #   self.printButtons()
     elif str.capitalize(pressed) == "B":
-      self._on_button_b_press()
       self._current_buttons_status[1] = True
-    elif pressed == "C":
-      self._on_button_c_press()
+      self.printButtons()
+      self._on_button_b_press()
+      self._current_buttons_status[1] = False
+    elif str.capitalize(pressed) == "C":
       self._current_buttons_status[2] = True
+      self.printButtons()
+      self._on_button_c_press()
+      self._current_buttons_status[2] = False
     else:
-      return False
+      raise ValueError("Invalid pressed button. Allowed keys are: 'A', 'B', 'C'")
 
     return True
 
   def __str__(self):
-
-    a =  self._current_buttons_status[0]
-    b =  self._current_buttons_status[1]
-    c =  self._current_buttons_status[2]
+    a =  "a" if self._current_buttons_status[0] else "A"
+    b =  "b" if self._current_buttons_status[1] else "B"
+    c =  "c" if self._current_buttons_status[2] else "C"
     return f"{a} {b} {c}"
 
     return
