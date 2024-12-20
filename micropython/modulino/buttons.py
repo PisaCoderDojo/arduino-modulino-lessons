@@ -9,6 +9,11 @@ class ModulinoButtons():
     self._on_button_b_press = None
     self._on_button_c_press = None
 
+     # Button callbacks
+    self._on_button_a_release = None
+    self._on_button_b_release = None
+    self._on_button_c_release = None
+
   @property
   def on_button_a_press(self):
     """
@@ -22,6 +27,20 @@ class ModulinoButtons():
     Sets the callback for the press event of button A.
     """
     self._on_button_a_press = value
+
+  @property
+  def on_button_a_release(self):
+    """
+    Returns the callback for the release event of button A.
+    """
+    return self._on_button_a_release
+
+  @on_button_a_release.setter
+  def on_button_a_release(self, value) -> None:
+    """
+    Sets the callback for the release event of button A.
+    """
+    self._on_button_a_release = value
 
   @property
   def on_button_b_press(self):
@@ -38,6 +57,20 @@ class ModulinoButtons():
     self._on_button_b_press = value
 
   @property
+  def on_button_b_release(self):
+    """
+    Returns the callback for the release event of button B.
+    """
+    return self._on_button_b_release
+
+  @on_button_b_release.setter
+  def on_button_b_release(self, value) -> None:
+    """
+    Sets the callback for the release event of button B.
+    """
+    self._on_button_b_release = value
+
+  @property
   def on_button_c_press(self):
     """
     Returns the callback for the press event of button C.
@@ -51,6 +84,20 @@ class ModulinoButtons():
     """
     self._on_button_c_press = value
 
+  @property
+  def on_button_c_release(self):
+    """
+    Returns the callback for the release event of button C.
+    """
+    return self._on_button_c_release
+
+  @on_button_c_release.setter
+  def on_button_c_release(self, value) -> None:
+    """
+    Sets the callback for the release event of button C.
+    """
+    self._on_button_c_release = value
+
   def printButtons(self):
     print("#########")
     print("#       #")
@@ -61,26 +108,28 @@ class ModulinoButtons():
     print("#########")
 
   def update(self) -> bool:
-    self.printButtons()
-    pressed = input()
-    if str.capitalize(pressed) == "A":
+    #self.printButtons()
+    key = input()
+    if str.capitalize(key) == "A":
       self._current_buttons_status[0] = True
-      self.printButtons()
       self._on_button_a_press()
-      self._current_buttons_status[0] = False
-    #   self.printButtons()
-    elif str.capitalize(pressed) == "B":
+    elif str.capitalize(key) == "B":
       self._current_buttons_status[1] = True
-      self.printButtons()
       self._on_button_b_press()
-      self._current_buttons_status[1] = False
-    elif str.capitalize(pressed) == "C":
+    elif str.capitalize(key) == "C":
       self._current_buttons_status[2] = True
-      self.printButtons()
       self._on_button_c_press()
-      self._current_buttons_status[2] = False
+    elif str.capitalize(key) == "X":
+       self._current_buttons_status[0] = False
+       self._on_button_a_release()
+    elif str.capitalize(key) == "Y":
+       self._current_buttons_status[1] = False
+       self._on_button_b_release()
+    elif str.capitalize(key) == "Z":
+       self._current_buttons_status[2] = False
+       self._on_button_c_release()
     else:
-      raise ValueError("Invalid pressed button. Allowed keys are: 'A', 'B', 'C'")
+        raise ValueError("Invalid pressed button. Allowed keys are: 'A', 'B', 'C', 'X', 'Y', 'Z")
 
     return True
 
