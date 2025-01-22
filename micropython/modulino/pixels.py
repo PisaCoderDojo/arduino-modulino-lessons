@@ -1,7 +1,7 @@
 NUM_LEDS = 8
 
 
-class ModulinoPixels:
+class VirtualModulinoPixels:
 
     leds = []
 

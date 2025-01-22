@@ -1,8 +1,8 @@
 
-from modulino import ModulinoButtons, ModulinoPixels
+from modulino import ModulinoButtons, VirtualModulinoPixels
 
 buttons = ModulinoButtons()
-pixels = ModulinoPixels()
+pixels = VirtualModulinoPixels()
 
 
 buttons.on_button_a_press = lambda : print("Button A pressed")

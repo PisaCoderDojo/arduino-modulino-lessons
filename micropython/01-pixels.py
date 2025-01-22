@@ -12,11 +12,11 @@
 # - LED 6 on, LED 6 off, LED 5 on, LED 5 off, … , LED 1 on, LED 1 off
 
 
-from modulino import ModulinoPixels, ModulinoColor
+from modulino import VirtualModulinoPixels, ModulinoColor
 
 from time import sleep
 
-pixels = ModulinoPixels()
+pixels = VirtualModulinoPixels()
 
 pixels.set_rgb(0, 0, 0, 0, 20)
 pixels.show()

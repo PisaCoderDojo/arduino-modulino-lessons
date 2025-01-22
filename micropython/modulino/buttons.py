@@ -108,7 +108,7 @@ class ModulinoButtons():
     print("#########")
 
   def update(self) -> bool:
-    #self.printButtons()
+    # TODO: remove input becuase this code runs on micropython boards.
     key = input()
     if str.capitalize(key) == "A":
       self._current_buttons_status[0] = True
